@@ -5,6 +5,7 @@
 #include <lvgl.h>
 
 #define KH_RING_BUFFER_SIZE 64
+#define KH_VISIBLE_ROWS     10  /* (240 - 32) / 20 */
 
 typedef enum {
     KH_KEY_PRESS,

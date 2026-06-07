@@ -4,12 +4,11 @@
 #include <stdio.h>
 #include "key_history.h"
 
-#define KH_SCREEN_W     280
-#define KH_SCREEN_H     240
-#define KH_HEADER_H      32
-#define KH_LIST_H       (KH_SCREEN_H - KH_HEADER_H)
-#define KH_ROW_H         20
-#define KH_VISIBLE_ROWS (KH_LIST_H / KH_ROW_H)  /* 10 */
+#define KH_SCREEN_W  280
+#define KH_SCREEN_H  240
+#define KH_HEADER_H   32
+#define KH_LIST_H    (KH_SCREEN_H - KH_HEADER_H)
+#define KH_ROW_H      20
 
 /* Column x positions */
 #define KH_COL_POS_X     8
@@ -101,7 +100,7 @@ static lv_opa_t kh_age_opacity(uint32_t age_ms) {
     if (age_ms < 2000) return LV_OPA_100;
     if (age_ms < 4000) return LV_OPA_60;
     if (age_ms < 6000) return LV_OPA_30;
-    return LV_OPA_15;
+    return LV_OPA_10;
 }
 
 /* ── Row renderer ────────────────────────────────────────── */
