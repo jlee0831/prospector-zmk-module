@@ -72,6 +72,12 @@ config LV_FONT_MONTSERRAT_12
 config LV_FONT_MONTSERRAT_14
     default y
 
+config LV_Z_MEM_POOL_SIZE
+    default 24000
+
+config ZMK_DISPLAY_DEDICATED_THREAD_STACK_SIZE
+    default 8192
+
 endif # TOUCAN_KEY_HISTORY
 
 endif
