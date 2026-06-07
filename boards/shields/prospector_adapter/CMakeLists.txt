@@ -16,4 +16,12 @@ if(CONFIG_SHIELD_PROSPECTOR_ADAPTER)
   zephyr_library_sources(src/widgets/battery_bar.c)
   zephyr_library_sources_ifdef(CONFIG_DT_HAS_ZMK_BEHAVIOR_CAPS_WORD_ENABLED src/widgets/caps_word_indicator.c)
   zephyr_library_sources(${font_sources})
+  if(CONFIG_TOUCAN_KEY_HISTORY)
+    zephyr_library_include_directories(include)
+    zephyr_library_sources(
+      src/key_history_listener.c
+      src/widgets/key_history_screen.c
+      src/behaviors/key_history_behaviors.c
+    )
+  endif()
 endif()

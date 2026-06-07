@@ -12,6 +12,10 @@
 
 #include <zmk/keymap.h>
 
+#if IS_ENABLED(CONFIG_TOUCAN_KEY_HISTORY)
+#include "key_history.h"
+#endif
+
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
@@ -39,6 +43,12 @@ lv_obj_t *zmk_display_status_screen() {
     lv_obj_set_size(zmk_widget_layer_roller_obj(&layer_roller_widget), 224, 140);
     lv_obj_align(zmk_widget_layer_roller_obj(&layer_roller_widget), LV_ALIGN_LEFT_MID, 0, -20);
 
+
+#if IS_ENABLED(CONFIG_TOUCAN_KEY_HISTORY)
+    lv_obj_t *hist = kh_screen_create();
+    kh_set_screens(screen, hist);
+    kh_listener_init();
+#endif
 
     return screen;
 }
