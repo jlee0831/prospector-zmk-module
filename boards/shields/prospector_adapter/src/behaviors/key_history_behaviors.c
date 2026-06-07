@@ -4,12 +4,16 @@
 #include <zmk/behavior.h>
 #include <zmk/display.h>
 #include <lvgl.h>
+#include <zephyr/logging/log.h>
 #include "key_history.h"
+
+LOG_MODULE_REGISTER(kh_behaviors, LOG_LEVEL_WRN);
 
 /* ── Display-thread work items ───────────────────────────── */
 
 static void do_toggle(struct k_work *work) {
     bool now_active = !kh_is_active();
+    LOG_WRN("do_toggle: now_active=%d hist=%p", now_active, (void *)kh_get_screen());
     kh_set_active(now_active);
     kh_set_recording(!now_active);
 
@@ -63,6 +67,7 @@ void kh_cmd_scroll_down(void) {
 
 static int kh_toggle_pressed(struct zmk_behavior_binding *binding,
                               struct zmk_behavior_binding_event event) {
+    LOG_WRN("kh_toggle: pressed");
     kh_cmd_toggle();
     return ZMK_BEHAVIOR_OPAQUE;
 }

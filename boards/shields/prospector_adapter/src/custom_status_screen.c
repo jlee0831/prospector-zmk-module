@@ -46,6 +46,7 @@ lv_obj_t *zmk_display_status_screen() {
 
 #if IS_ENABLED(CONFIG_TOUCAN_KEY_HISTORY)
     lv_obj_t *hist = kh_screen_create();
+    LOG_WRN("KH: feature enabled, hist=%p", (void *)hist);
     kh_set_screens(screen, hist);
     kh_listener_init();
 #endif
