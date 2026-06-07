@@ -44,12 +44,21 @@ lv_obj_t *zmk_display_status_screen() {
     lv_obj_align(zmk_widget_layer_roller_obj(&layer_roller_widget), LV_ALIGN_LEFT_MID, 0, -20);
 
 
+    /* Debug: show CONFIG_TOUCAN_KEY_HISTORY state on display */
+    lv_obj_t *kh_dbg = lv_label_create(screen);
+    lv_obj_set_style_text_font(kh_dbg, &lv_font_montserrat_12, 0);
 #if IS_ENABLED(CONFIG_TOUCAN_KEY_HISTORY)
+    lv_label_set_text(kh_dbg, "KH:y");
+    lv_obj_set_style_text_color(kh_dbg, lv_color_hex(0x3fb950), 0);
     lv_obj_t *hist = kh_screen_create();
     LOG_WRN("KH: feature enabled, hist=%p", (void *)hist);
     kh_set_screens(screen, hist);
     kh_listener_init();
+#else
+    lv_label_set_text(kh_dbg, "KH:n");
+    lv_obj_set_style_text_color(kh_dbg, lv_color_hex(0xf85149), 0);
 #endif
+    lv_obj_align(kh_dbg, LV_ALIGN_TOP_RIGHT, -4, 4);
 
     return screen;
 }
