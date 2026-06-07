@@ -22,6 +22,7 @@ choice ZMK_DISPLAY_WORK_QUEUE
 endchoice
 
 config ZMK_DISPLAY_DEDICATED_THREAD_STACK_SIZE
+    default 8192 if TOUCAN_KEY_HISTORY
     default 4096
 
 choice ST7789V_PIXEL_FORMAT
@@ -32,6 +33,7 @@ config LV_Z_VDB_SIZE
     default 100
 
 config LV_Z_MEM_POOL_SIZE
+    default 24000 if TOUCAN_KEY_HISTORY
     default 10000
 
 config LV_DPI_DEF
@@ -71,12 +73,6 @@ config LV_FONT_MONTSERRAT_12
 
 config LV_FONT_MONTSERRAT_14
     default y
-
-config LV_Z_MEM_POOL_SIZE
-    default 24000
-
-config ZMK_DISPLAY_DEDICATED_THREAD_STACK_SIZE
-    default 8192
 
 endif # TOUCAN_KEY_HISTORY
 
